@@ -2,15 +2,15 @@
  * @Author: zzh weiersili2021@163.com
  * @Date: 2024-10-20 19:56:52
  * @LastEditors: zzh weiersili2021@163.com
- * @LastEditTime: 2024-10-24 21:19:51
+ * @LastEditTime: 2024-10-25 11:15:09
  * @FilePath: /Goproject/Gin/Project/main.go
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 package main
 
 import (
-	common "github.com/GraduationDesign/Common" // 注意这个导入的下划线，表示仅初始化驱动
-	controller "github.com/GraduationDesign/controller"
+	common "github.com/GraduationDesign/Common"
+	router "github.com/GraduationDesign/Router"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,12 +22,6 @@ func main() {
 	defer db.Close()
 	//router.Run(":8080")
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"code": 200,
-			"msg":  "pong",
-		})
-	})
-	r.POST("/user/register", controller.Register)
+	router.InitRouter(r)
 	r.Run(":8080")
 }
